@@ -1,0 +1,21 @@
+%button-shared {
+  border-radius: 5px;
+  padding: 2px;
+  border: #000000 solid 1px;
+  color: #000000;
+}
+
+.default {
+  @extend %button-shared;
+  cursor: default;
+  background-color: #86d992;
+  &:hover {
+    background-color: #63ff70;
+  }
+}
+
+.disabled {
+  @extend %button-shared;
+  background-color: #999999;
+  pointer-events: none;
+}
