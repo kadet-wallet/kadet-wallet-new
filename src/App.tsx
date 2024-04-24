@@ -1,8 +1,9 @@
-import { Button } from "./components/Button";
+import Router from "@/src/Router";
+
 function App() {
   return (
     <>
-      <Button active={true}>Click me</Button>
+      <Router />{" "}
     </>
   );
 }
