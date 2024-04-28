@@ -6,10 +6,12 @@ type ButtonProps = {
   children: React.ReactNode;
 };
 
-export const Button = (props: ButtonProps) => {
+const Button = (props: ButtonProps) => {
   if (props.active) {
     return <button className={styles.default}>{props.children}</button>;
   } else {
     return <button className={styles.disabled}>{props.children}</button>;
   }
 };
+
+export default Button;

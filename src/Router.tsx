@@ -1,11 +1,11 @@
 import { HashRouter, Route, Routes } from "react-router-dom";
-import StartScreen from "@/src/pages/StartingScreen";
+import StartScreen from "@/src/pages/StartScreen";
 import Login from "@/src/pages/Login";
 import CreatePassword from "@/src/pages/CreatePassword";
-import SrpIntro from "@/src/pages/SrpIntro";
-import Srp from "@/src/pages/SRP";
-import SrpTest from "@/src/pages/SRPTest";
-import SrpTestSuccess from "@/src/pages/SRPTestSuccess";
+import SRPIntro from "@/src/pages/SRPIntro";
+import SRPDisplay from "@/src/pages/SRPDisplay";
+import SRPTest from "@/src/pages/SRPTest";
+import SRPTestSuccess from "@/src/pages/SRPTestSuccess";
 import Dashboard from "@/src/pages/Dashboard";
 import KDATransferInput from "@/src/pages/KDATransferInput";
 import KDATransferInProgress from "@/src/pages/KDATransferInProgress";
@@ -26,10 +26,10 @@ const Routers = () => {
           path="/CreatePasswordForWalletImport"
           element={<CreatePassword nextScreen="/ImportWallet" />}
         ></Route>
-        <Route path="/SrpIntro" element={<SrpIntro />}></Route>
-        <Route path="/Srp" element={<Srp />}></Route>
-        <Route path="/SrpTest" element={<SrpTest />}></Route>
-        <Route path="/SrpTestSuccess" element={<SrpTestSuccess />}></Route>
+        <Route path="/SRPIntro" element={<SRPIntro />}></Route>
+        <Route path="/SRPDisplay" element={<SRPDisplay />}></Route>
+        <Route path="/SRPTest" element={<SRPTest />}></Route>
+        <Route path="/SRPTestSuccess" element={<SRPTestSuccess />}></Route>
         <Route path="/Dashboard" element={<Dashboard />}></Route>
         <Route path="/KDATransferInput" element={<KDATransferInput />}></Route>
         <Route
