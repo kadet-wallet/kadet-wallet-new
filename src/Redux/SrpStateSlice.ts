@@ -9,21 +9,8 @@ export interface SrpState {
 }
 
 const initialState: SrpState = {
-  correctSrp: [
-    "father",
-    "monkey",
-    "building",
-    "seed",
-    "mother",
-    "hat",
-    "dodge",
-    "him",
-    "market",
-    "show",
-    "dad",
-    "body",
-  ],
-  enteredSrp: ["", "", "", "", "", "", "", "", "", "", "", ""],
+  correctSrp: Array(24).fill(""),
+  enteredSrp: Array(24).fill(""),
   enteredSrpIndex: 0,
   passwordsMatch: false,
 };
@@ -38,8 +25,8 @@ export const srpStateSlice = createSlice({
     incrementEnteredSrpIndex: (state, _) => {
       state.enteredSrpIndex++;
     },
-    resetEnteredSrpIndex: (state, _) => {
-      state.enteredSrpIndex = 0;
+    setEnteredSrpIndex: (state, action: PayloadAction<number>) => {
+      state.enteredSrpIndex = action.payload;
     },
     setCorrectSrp: (state, action: PayloadAction<string[]>) => {
       state.correctSrp = action.payload;
@@ -50,7 +37,7 @@ export const srpStateSlice = createSlice({
 export const {
   setEnteredSrp,
   incrementEnteredSrpIndex,
-  resetEnteredSrpIndex,
+  setEnteredSrpIndex,
   setCorrectSrp,
 } = srpStateSlice.actions;
 

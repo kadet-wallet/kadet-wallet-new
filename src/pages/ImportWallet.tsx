@@ -1,5 +1,7 @@
+import DefaultLayout from "@/src/components/DefaultLayout";
+
 const ImportWallet = () => {
-  return <>TODO</>;
+  return <DefaultLayout> </DefaultLayout>;
 };
 
 export default ImportWallet;

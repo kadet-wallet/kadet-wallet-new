@@ -1,6 +1,6 @@
 import { HashRouter, Route, Routes } from "react-router-dom";
 import StartScreen from "@/src/pages/StartScreen";
-import Login from "@/src/pages/Login";
+import Unlock from "@/src/pages/Unlock";
 import CreatePassword from "@/src/pages/CreatePassword";
 import SRPIntro from "@/src/pages/SRPIntro";
 import SRPDisplay from "@/src/pages/SRPDisplay";
@@ -17,7 +17,7 @@ const Routers = () => {
     <HashRouter>
       <Routes>
         <Route path="/" element={<StartScreen />}></Route>
-        <Route path="/Login" element={<Login />}></Route>
+        <Route path="/Unlock" element={<Unlock />}></Route>
         <Route
           path="/CreatePasswordForSrpCreation"
           element={<CreatePassword nextScreen="/SrpIntro" />}
