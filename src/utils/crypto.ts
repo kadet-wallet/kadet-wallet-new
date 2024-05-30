@@ -67,14 +67,14 @@ export function comparePasswordToHash(
   }
 }
 
-export const encryptSRP = (SRP: string[]) => {
+export const encryptSRP = (SRP: string[]): string[] => {
   const password = store.getState().passwordState.password;
   const encryptedSRP: string[] = [];
   SRP.map((item) => encryptedSRP.push(encryptKey(item, password)));
   return encryptedSRP;
 };
 
-export const decryptSRP = (encryptedSRP: string[]) => {
+export const decryptSRP = (encryptedSRP: string[]): string[] => {
   const password = store.getState().passwordState.password;
   const decryptedSRP: string[] = [];
   encryptedSRP.map((item) => {

@@ -1,5 +1,7 @@
 import { type ElementType, type ComponentPropsWithoutRef } from "react";
-import * as react from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setSrpIndex } from "@/src/Redux/SrpStateSlice";
+import { RootState } from "@/src/Redux/store";
 import { ImArrowLeft2, ImArrowRight2 } from "react-icons/im";
 
 type SRPLayoutProps<T extends ElementType> = {
@@ -9,8 +11,8 @@ type SRPLayoutProps<T extends ElementType> = {
 const SRPLayout = <C extends ElementType>({
   as: Component,
 }: SRPLayoutProps<C>) => {
-  const [startIdx, setStartIdx] = react.useState(0);
-
+  const dispatch = useDispatch();
+  const startIdx = useSelector((state: RootState) => state.srpState.srpIndex);
   return (
     <>
       <div>
@@ -47,9 +49,9 @@ const SRPLayout = <C extends ElementType>({
       </div>
       <div>
         {startIdx == 0 ? (
-          <ImArrowRight2 onClick={() => setStartIdx(12)} />
+          <ImArrowRight2 onClick={() => dispatch(setSrpIndex(12))} />
         ) : (
-          <ImArrowLeft2 onClick={() => setStartIdx(0)} />
+          <ImArrowLeft2 onClick={() => dispatch(setSrpIndex(0))} />
         )}
       </div>
     </>

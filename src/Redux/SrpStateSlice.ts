@@ -4,14 +4,14 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 export interface SrpState {
   correctSrp: string[];
   enteredSrp: string[];
-  enteredSrpIndex: number;
+  srpIndex: number;
   passwordsMatch: boolean;
 }
 
 const initialState: SrpState = {
   correctSrp: Array(24).fill(""),
   enteredSrp: Array(24).fill(""),
-  enteredSrpIndex: 0,
+  srpIndex: 0,
   passwordsMatch: false,
 };
 
@@ -22,11 +22,8 @@ export const srpStateSlice = createSlice({
     setEnteredSrp: (state, action: PayloadAction<string[]>) => {
       state.enteredSrp = action.payload;
     },
-    incrementEnteredSrpIndex: (state, _) => {
-      state.enteredSrpIndex++;
-    },
-    setEnteredSrpIndex: (state, action: PayloadAction<number>) => {
-      state.enteredSrpIndex = action.payload;
+    setSrpIndex: (state, action: PayloadAction<number>) => {
+      state.srpIndex = action.payload;
     },
     setCorrectSrp: (state, action: PayloadAction<string[]>) => {
       state.correctSrp = action.payload;
@@ -34,11 +31,7 @@ export const srpStateSlice = createSlice({
   },
 });
 
-export const {
-  setEnteredSrp,
-  incrementEnteredSrpIndex,
-  setEnteredSrpIndex,
-  setCorrectSrp,
-} = srpStateSlice.actions;
+export const { setEnteredSrp, setSrpIndex, setCorrectSrp } =
+  srpStateSlice.actions;
 
 export default srpStateSlice.reducer;
