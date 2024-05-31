@@ -1,6 +1,6 @@
-function shuffle(array: string[]) {
-  let currentIndex = array.length,
-    randomIndex;
+export function shuffle(array: []) {
+  let currentIndex = array.length;
+  let randomIndex;
   while (currentIndex > 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
@@ -11,5 +11,3 @@ function shuffle(array: string[]) {
 
   return array;
 }
-
-export default shuffle;
