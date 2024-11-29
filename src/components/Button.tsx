@@ -15,7 +15,7 @@ const Button = (props: ButtonProps) => {
       </button>
     );
   } else {
-    return <button className={styles.disabled}>{props.children}</button>;
+    return <button className={styles.disabled} onClick={()=>{}}>{props.children}</button>;
   }
 };
 

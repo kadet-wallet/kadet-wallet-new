@@ -1,12 +1,53 @@
-import { SRPBadgeProps } from "@/src/components/SRPBadgeProps";
+import { useSelector, useDispatch } from "react-redux";
+import { store, RootState } from "../Redux/store";
+import { setEnteredSrp, setShuffledSrpIndex } from "../Redux/SrpStateSlice";
+import { useDrag } from "react-dnd";
+import { BadgeTypes } from "./BadgeTypes"
 import styles from "@/src/components/SRPBadge.module.scss";
+import { useState } from "react";
 
-const SRPDragBadge = (_: SRPBadgeProps) => {
-  // Get shuffled SRP
+interface DropResult {
+  num: number;
+}
+
+const SRPDragBadge = () => {
+  const shuffledSrp = useSelector((state: RootState) => state.srpState.shuffledSrp);
+  let enteredSrp = useSelector((state: RootState) => state.srpState.enteredSrp);
+  let shuffledSrpIndex = useSelector((state: RootState) => state.srpState.shuffledSrpIndex);
+  store.subscribe(() => {
+    enteredSrp = store.getState().srpState.enteredSrp;
+    shuffledSrpIndex = store.getState().srpState.shuffledSrpIndex;
+  });
+  const [phrase, setPhrase] = useState(shuffledSrp[shuffledSrpIndex]);
+  const dispatch = useDispatch();
+
+  const [_, dragRef] = useDrag(
+    () => ({
+      type: BadgeTypes.DRAG_BADGE,
+      //item: { phrase },
+      end: (item, monitor) => {
+        const dropResult = monitor.getDropResult<DropResult>();
+        if (item && dropResult) {
+          const newSrp = [...enteredSrp];
+          newSrp[dropResult.num] = phrase;
+          console.log(dropResult.num + " is set to " + phrase);
+          dispatch(setEnteredSrp(newSrp));
+          dispatch(setShuffledSrpIndex(shuffledSrpIndex+1));
+          setPhrase(shuffledSrp[shuffledSrpIndex]);
+        }
+      },
+      collect: (monitor) => ({
+        isDragging: monitor.isDragging(),
+        handlerId: monitor.getHandlerId(),
+      }),
+    }),
+    [phrase]
+  );
+
   return (
-    <div className={styles.parent}>
+    <div ref={dragRef} className={styles.parent}>
       <div className={styles.badge}>
-        <div className={styles.phrase}> </div>
+        <div className={styles.phrase}>{phrase}</div>
       </div>
     </div>
   );

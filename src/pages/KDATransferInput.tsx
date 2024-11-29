@@ -1,5 +1,7 @@
+import DefaultLayout from "../components/DefaultLayout";
+
 const KDATransferInput = () => {
-  return <>TODO</>;
+  return <DefaultLayout>TODO</DefaultLayout>;
 };
 
 export default KDATransferInput;

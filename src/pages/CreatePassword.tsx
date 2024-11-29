@@ -11,6 +11,7 @@ type CreatePasswordProps = {
 };
 
 const CreatePassword = (props: CreatePasswordProps) => {
+  
   const [password, setPassword] = react.useState("");
   const [confirmPassword, setConfirmPassword] = react.useState("");
   const [isActive, setIsActive] = react.useState(false);

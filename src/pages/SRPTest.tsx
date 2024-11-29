@@ -5,19 +5,26 @@ import DefaultLayout from "@/src/components/DefaultLayout";
 import SRPDropBadge from "@/src/components/SRPDropBadge";
 import SRPLayout from "@/src/components/SRPLayout";
 import SRPDragBadge from "@/src/components/SRPDragBadge";
-
+import { useDispatch } from "react-redux";
+import { setSrpIndex } from "../Redux/SrpStateSlice";
+import { useEffect } from "react";
 const SRPTest = () => {
-  //   const [startIdx, setStartIdx] = react.useState(0);
-  //   // TODO: range(0-11 or 12-23).map(() => displayTextInput(words[i]))
+
+  const dispatch = useDispatch();
+
+  useEffect(()=> {
+    dispatch(setSrpIndex(0));
+  }, []);
+
   return (
-    <DndProvider backend={HTML5Backend}>
-      <DefaultLayout>
+  <DefaultLayout>
+    <DndProvider backend={HTML5Backend} debugMode={true}>
         <div>
-          <SRPDragBadge num={0} />
+          <SRPDragBadge />
         </div>
         <SRPLayout as={SRPDropBadge} />
-      </DefaultLayout>
     </DndProvider>
+  </DefaultLayout>
   );
 };
 

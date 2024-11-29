@@ -1,5 +1,7 @@
+import DefaultLayout from "../components/DefaultLayout";
+
 const Unlock = () => {
-  return <>TODO</>;
+  return <DefaultLayout>TODO</DefaultLayout>;
 };
 
 export default Unlock;

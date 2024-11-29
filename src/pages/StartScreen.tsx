@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 const StartScreen = () => {
   return (
     <DefaultLayout>
+      <h1>Kadet Wallet</h1>
       <div>Starting screen</div>
       <Filler flexGrow={2}></Filler>
       <Link to="/Unlock">
