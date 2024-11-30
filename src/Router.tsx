@@ -4,7 +4,9 @@ import Unlock from "@/src/pages/Unlock";
 import CreatePassword from "@/src/pages/CreatePassword";
 import SRPIntro from "@/src/pages/SRPIntro";
 import SRPDisplay from "@/src/pages/SRPDisplay";
+import SRPDisplay2 from "@/src/pages/SRPDisplay2";
 import SRPTest from "@/src/pages/SRPTest";
+import SRPTest2 from "@/src/pages/SRPTest2";
 import SRPTestSuccess from "@/src/pages/SRPTestSuccess";
 import Dashboard from "@/src/pages/Dashboard";
 import KDATransferInput from "@/src/pages/KDATransferInput";
@@ -28,7 +30,10 @@ const Routers = () => {
         ></Route>
         <Route path="/SRPIntro" element={<SRPIntro />}></Route>
         <Route path="/SRPDisplay" element={<SRPDisplay />}></Route>
+        <Route path="/SRPDisplay2" element={<SRPDisplay2 />}></Route>
+
         <Route path="/SRPTest" element={<SRPTest />}></Route>
+        <Route path="/SRPTest2" element={<SRPTest2 />}></Route>
         <Route path="/SRPTestSuccess" element={<SRPTestSuccess />}></Route>
         <Route path="/Dashboard" element={<Dashboard />}></Route>
         <Route path="/KDATransferInput" element={<KDATransferInput />}></Route>

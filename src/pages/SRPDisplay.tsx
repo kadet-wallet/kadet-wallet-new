@@ -1,14 +1,12 @@
 import * as react from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/src/Redux/store";
-import { setCorrectSrp } from "@/src/Redux/SrpStateSlice";
+import { useDispatch } from "react-redux";
+import { setCorrectSrp, setSrpIndex } from "@/src/Redux/SrpStateSlice";
 import { generateMnemonic } from "@/src/utils/crypto";
 import DefaultLayout from "@/src/components/DefaultLayout";
 import Button from "@/src/components/Button";
 import Filler from "@/src/components/Filler";
-import SRPLayout from "@/src/components/SRPLayout";
-import SRPStaticBadge from "@/src/components/SRPStaticBadge";
+import SRPLayoutStatic from "@/src/components/SRPLayoutStatic";
 
 const SRPDisplay = () => {
   const dispatch = useDispatch();
@@ -16,20 +14,21 @@ const SRPDisplay = () => {
   react.useEffect(() => {
     const mnemonic = generateMnemonic();
     dispatch(setCorrectSrp(mnemonic.split(" ")));
+    dispatch(setSrpIndex(0))
   }, [dispatch]);
 
-  const srpIndex = useSelector((state: RootState) => state.srpState.srpIndex);
+  //const srpIndex = useSelector((state: RootState) => state.srpState.srpIndex);
 
   return (
     <DefaultLayout>
       <div>Here is your SRP:</div>
       <div>
-        <SRPLayout as={SRPStaticBadge} />
+        <SRPLayoutStatic startIdx={0} />
       </div>
       <Filler flexGrow={1} />
       <div>
-        <Link to="/SRPTest">
-          <Button active={srpIndex === 12}>Test SRP</Button>
+        <Link to="/SRPDisplay2">
+          <Button active={true}>Next Screen</Button>
         </Link>
       </div>
     </DefaultLayout>

@@ -1,10 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
-import { store, RootState } from "../Redux/store";
-import { setEnteredSrp, setShuffledSrpIndex } from "../Redux/SrpStateSlice";
 import { useDrag } from "react-dnd";
-import { BadgeTypes } from "./BadgeTypes"
-import styles from "@/src/components/SRPBadge.module.scss";
 import { useState } from "react";
+import { store, RootState } from "@/src/Redux/store";
+import { setEnteredSrp, setShuffledSrpIndex } from "@/src/Redux/SrpStateSlice";
+import styles from "@/src/components/SRPBadge.module.scss";
+import { BadgeTypes } from "@/src/components/BadgeTypes"
 
 interface DropResult {
   num: number;

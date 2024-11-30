@@ -5,23 +5,26 @@ import { Link } from "react-router-dom";
 import DefaultLayout from "@/src/components/DefaultLayout";
 import SRPDragBadge from "@/src/components/SRPDragBadge";
 import SRPLayoutDrop from "@/src/components/SRPLayoutDrop";
+import Filler from "@/src/components/Filler";
 import Button from "@/src/components/Button";
 
-
-const SRPTest = () => {
-  return (
-  <DefaultLayout>
+const SRPTest2 = () => {
+return (
     <DndProvider backend={HTML5Backend} debugMode={true}>
-      <div>
-        <SRPDragBadge />
-      </div>
-     <SRPLayoutDrop startIdx={0} />
-     <Link to="/SRPTest2">
-        <Button active={true}>Next Words</Button>
-     </Link>
+        <DefaultLayout>
+            <div>
+                <SRPDragBadge />
+            </div>
+            <SRPLayoutDrop startIdx={12} />
+            <Filler flexGrow={1} />
+            <Link to="/SRPTestSuccess">
+                <div>
+                    <Button active={true}>Next</Button>
+                </div>
+            </Link>
+        </DefaultLayout>
     </DndProvider>
-  </DefaultLayout>
   );
 };
 
-export default SRPTest;
+export default SRPTest2;

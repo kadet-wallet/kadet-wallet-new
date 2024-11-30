@@ -1,9 +1,10 @@
-import { SRPBadgeProps } from "@/src/components/SRPBadgeProps";
+
 import { useDrop } from "react-dnd";
-import { BadgeTypes } from "./BadgeTypes";
-import { useSelector } from "react-redux";
-import { store, RootState } from "../Redux/store";
 import { useState, useEffect } from "react";
+import { SRPBadgeProps } from "@/src/components/SRPBadgeProps";
+import { BadgeTypes } from "@/src/components/BadgeTypes";
+import { useSelector } from "react-redux";
+import { store, RootState } from "@/src/Redux/store";
 import styles from "@/src/components/SRPBadge.module.scss";
 
 const SRPDropBadge = (props: SRPBadgeProps) => {
@@ -15,7 +16,7 @@ const SRPDropBadge = (props: SRPBadgeProps) => {
   
   const [phrase, setPhrase] = useState("");
 
-  const [_, drop] = useDrop(
+  const [_, dropRef] = useDrop(
     () => ({
       accept: BadgeTypes.DRAG_BADGE,
       drop: () => ({ num: props.num }),
@@ -34,7 +35,7 @@ const SRPDropBadge = (props: SRPBadgeProps) => {
   });
 
   return (
-    <div ref={drop} className={styles.parent}>
+    <div ref={dropRef} className={styles.parent}>
       <div className={styles.badge}>
         <div>{props.num + 1}: </div>
         <div className={styles.phrase}>{phrase}</div>
