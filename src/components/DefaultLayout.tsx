@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "@/src/components/DefaultLayout.module.scss";
+import styles from "@/src/styles/DefaultLayout.module.scss";
 
 type DefaultLayoutProps = {
   children: React.ReactNode;

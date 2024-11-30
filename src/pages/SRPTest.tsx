@@ -6,21 +6,30 @@ import DefaultLayout from "@/src/components/DefaultLayout";
 import SRPDragBadge from "@/src/components/SRPDragBadge";
 import SRPLayoutDrop from "@/src/components/SRPLayoutDrop";
 import Button from "@/src/components/Button";
-
+import Filler from "@/src/components/Filler";
+import { resetSrp } from "@/src/utils/ResetSrp";
 
 const SRPTest = () => {
   return (
-  <DefaultLayout>
     <DndProvider backend={HTML5Backend} debugMode={true}>
-      <div>
-        <SRPDragBadge />
-      </div>
-     <SRPLayoutDrop startIdx={0} />
-     <Link to="/SRPTest2">
-        <Button active={true}>Next Words</Button>
-     </Link>
+      <DefaultLayout>
+        <div>
+          <SRPDragBadge />
+        </div>
+        <SRPLayoutDrop startIdx={0} />
+        <Filler flexGrow={1} />
+        <Link to="/SRPTest2">
+          <div>
+            <Button active={true}>Next Words</Button>
+          </div>
+        </Link>
+        <div>
+          <Button active={true} onClick={resetSrp}>
+            Reset
+          </Button>
+        </div>
+      </DefaultLayout>
     </DndProvider>
-  </DefaultLayout>
   );
 };
 

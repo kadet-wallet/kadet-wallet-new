@@ -1,7 +1,7 @@
-import styles from "@/src/components/SRPBadge.module.scss";
 import { SRPBadgeProps } from "@/src/components/SRPBadgeProps";
 import { useSelector } from "react-redux";
-import { RootState } from "@/src/Redux/store";
+import { RootState } from "@/src/redux/Store";
+import styles from "@/src/styles/SRPBadge.module.scss";
 
 const SRPStaticBadge = (props: SRPBadgeProps) => {
   const correctSrp = useSelector(

@@ -11,7 +11,8 @@ import SRPTestSuccess from "@/src/pages/SRPTestSuccess";
 import Dashboard from "@/src/pages/Dashboard";
 import KDATransferInput from "@/src/pages/KDATransferInput";
 import KDATransferInProgress from "@/src/pages/KDATransferInProgress";
-import ImportWallet from "@/src/pages/ImportWallet";
+import SrpImport from "@/src/pages/SrpImport";
+import SrpImport2 from "@/src/pages/SrpImport2";
 
 const Routers = () => {
   console.log("Router");
@@ -41,7 +42,8 @@ const Routers = () => {
           path="/KDATransferInProgress"
           element={<KDATransferInProgress />}
         ></Route>
-        <Route path="/ImportWallet" element={<ImportWallet />}></Route>
+        <Route path="/SrpImport" element={<SrpImport />}></Route>
+        <Route path="/SrpImport2" element={<SrpImport2 />}></Route>
       </Routes>
     </HashRouter>
   );

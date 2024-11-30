@@ -1,4 +1,4 @@
-import DefaultLayout from "../components/DefaultLayout";
+import DefaultLayout from "@/src/components/DefaultLayout";
 
 const KDATransferInProgress = () => {
   return <DefaultLayout>TODO</DefaultLayout>;

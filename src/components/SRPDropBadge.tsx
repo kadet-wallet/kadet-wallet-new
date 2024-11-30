@@ -1,19 +1,18 @@
-
 import { useDrop } from "react-dnd";
 import { useState, useEffect } from "react";
 import { SRPBadgeProps } from "@/src/components/SRPBadgeProps";
 import { BadgeTypes } from "@/src/components/BadgeTypes";
 import { useSelector } from "react-redux";
-import { store, RootState } from "@/src/Redux/store";
-import styles from "@/src/components/SRPBadge.module.scss";
+import { store, RootState } from "@/src/redux/Store";
+import styles from "@/src/styles/SRPBadge.module.scss";
 
 const SRPDropBadge = (props: SRPBadgeProps) => {
   let enteredSrp = useSelector((state: RootState) => state.srpState.enteredSrp);
 
-  store.subscribe(()=>{
-    enteredSrp = store.getState().srpState.enteredSrp
+  store.subscribe(() => {
+    enteredSrp = store.getState().srpState.enteredSrp;
   });
-  
+
   const [phrase, setPhrase] = useState("");
 
   const [_, dropRef] = useDrop(
@@ -27,11 +26,12 @@ const SRPDropBadge = (props: SRPBadgeProps) => {
       canDrop: (_: any) => {
         return !!(phrase === "");
       },
-    }), [phrase]
+    }),
+    [phrase]
   );
 
   useEffect(() => {
-    setPhrase(enteredSrp[props.num])
+    setPhrase(enteredSrp[props.num]);
   });
 
   return (

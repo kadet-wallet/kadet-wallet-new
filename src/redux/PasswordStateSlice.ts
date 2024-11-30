@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
 
 export interface PasswordState {
   password: string;
@@ -7,6 +7,7 @@ export interface PasswordState {
   passwordsMatch: boolean;
   showPassword: boolean;
   passwordError: string;
+  isPasswordValid: boolean;
   confirmPasswordError: string;
   isPasswordValidated: boolean;
   isCheckboxChecked: boolean;
@@ -14,19 +15,20 @@ export interface PasswordState {
 }
 
 const initialState: PasswordState = {
-  password: '',
-  confirmPassword: '',
+  password: "",
+  confirmPassword: "",
   passwordsMatch: false,
   showPassword: false,
-  passwordError: '',
-  confirmPasswordError: '',
+  passwordError: "",
+  isPasswordValid: false,
+  confirmPasswordError: "",
   isPasswordValidated: false,
   isCheckboxChecked: false,
-  errorMessage: '',
+  errorMessage: "",
 };
 
 export const passwordStateSlice = createSlice({
-  name: 'PasswordState',
+  name: "PasswordState",
   initialState,
   reducers: {
     setPassword: (state, action: PayloadAction<string>) => {
@@ -43,6 +45,9 @@ export const passwordStateSlice = createSlice({
     },
     setPasswordError: (state, action: PayloadAction<string>) => {
       state.passwordError = action.payload;
+    },
+    setIsPasswordValid: (state, action: PayloadAction<boolean>) => {
+      state.isPasswordValid = action.payload;
     },
     setConfirmPasswordError: (state, action: PayloadAction<string>) => {
       state.confirmPasswordError = action.payload;
@@ -65,6 +70,7 @@ export const {
   setPasswordsMatch,
   setShowPassword,
   setPasswordError,
+  setIsPasswordValid,
   setConfirmPasswordError,
   setIsPasswordValidated,
   setIsCheckboxChecked,

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setSrpIndex } from "@/src/Redux/SrpStateSlice";
+import { setSrpIndex } from "@/src/redux/SrpStateSlice";
 import DefaultLayout from "@/src/components/DefaultLayout";
 import Button from "@/src/components/Button";
 import Filler from "@/src/components/Filler";

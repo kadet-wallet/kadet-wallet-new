@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import {shuffle} from "@/src/utils/shuffle";
 
 export interface SrpState {
   correctSrp: string[];
@@ -8,7 +7,6 @@ export interface SrpState {
   shuffledSrp: string[];
   srpIndex: number;
   shuffledSrpIndex: number;
-  passwordsMatch: boolean;
 }
 
 const initialState: SrpState = {
@@ -17,7 +15,6 @@ const initialState: SrpState = {
   shuffledSrp: Array(24).fill(""),
   srpIndex: 0,
   shuffledSrpIndex: 0,
-  passwordsMatch: false,
 };
 
 export const srpStateSlice = createSlice({
@@ -35,12 +32,21 @@ export const srpStateSlice = createSlice({
     },
     setCorrectSrp: (state, action: PayloadAction<string[]>) => {
       state.correctSrp = action.payload;
-      state.shuffledSrp = shuffle(action.payload);
+      console.log(state.correctSrp);
+    },
+    setShuffledSrp: (state, action: PayloadAction<string[]>) => {
+      state.shuffledSrp = action.payload;
+      console.log(state.shuffledSrp);
     },
   },
 });
 
-export const { setEnteredSrp, setSrpIndex, setShuffledSrpIndex, setCorrectSrp } =
-  srpStateSlice.actions;
+export const {
+  setEnteredSrp,
+  setSrpIndex,
+  setShuffledSrpIndex,
+  setCorrectSrp,
+  setShuffledSrp,
+} = srpStateSlice.actions;
 
 export default srpStateSlice.reducer;

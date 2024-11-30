@@ -1,9 +1,9 @@
-import { configureStore } from '@reduxjs/toolkit';
-import SrpStateSliceReducer from './SrpStateSlice';
-import PasswordStateSliceReducer from './PasswordStateSlice';
-import NetworkStateSliceReducer from './NetworkStateSlice';
-import WalletStateReducer from './WalletStateSlice';
-import TransferStateReducer from './TransferStateSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import SrpStateSliceReducer from "./SrpStateSlice";
+import PasswordStateSliceReducer from "./PasswordStateSlice";
+import NetworkStateSliceReducer from "./NetworkStateSlice";
+import WalletStateReducer from "./WalletStateSlice";
+import TransferStateReducer from "./TransferStateSlice";
 
 export const store = configureStore({
   reducer: {

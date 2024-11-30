@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
 
 export interface WalletState {
   chainId: string;
@@ -13,17 +13,17 @@ export interface WalletState {
 }
 
 const initialState: WalletState = {
-  chainId: '1',
+  chainId: "1",
   balance: 0,
-  account: '',
-  alias: '',
-  publicKey: '',
-  secretKey: '',
+  account: "",
+  alias: "",
+  publicKey: "",
+  secretKey: "",
   connectedSites: [],
 };
 
 export const walletStateSlice = createSlice({
-  name: 'WalletState',
+  name: "WalletState",
   initialState,
   reducers: {
     setChainId: (state, action: PayloadAction<string>) => {

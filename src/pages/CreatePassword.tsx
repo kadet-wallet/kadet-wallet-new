@@ -1,32 +1,31 @@
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import * as react from "react";
 import DefaultLayout from "@/src/components/DefaultLayout";
 import Button from "@/src/components/Button";
 import Filler from "@/src/components/Filler";
-import { createStoredPassword } from "@/src/utils/crypto";
-import styles from "@/src/pages/Input.module.scss";
+import styles from "@/src/styles/Input.module.scss";
+import { storePasswordHash } from "@/src/utils/StorePasswordHash";
+import { setPassword } from "@/src/redux/PasswordStateSlice";
 
+// We need these because we create a password prior to both creating a new SRP and reusing an existing SRP
 type CreatePasswordProps = {
   nextScreen: string;
 };
 
 const CreatePassword = (props: CreatePasswordProps) => {
-  
-  const [password, setPassword] = react.useState("");
-  const [confirmPassword, setConfirmPassword] = react.useState("");
-  const [isActive, setIsActive] = react.useState(false);
+  const [pass, setPass] = useState("");
+  const [confirmPass, setConfirmPass] = useState("");
+  const [isButtonActive, setIsButtonActive] = useState(false);
 
-  react.useEffect(() => {
-    if (password.length > 7 && password === confirmPassword) {
-      setIsActive(true);
-    } else setIsActive(false);
-  }, [password, confirmPassword]);
+  const dispatch = useDispatch();
 
-  const storePassword = () => {
-    const storedPass = createStoredPassword(password);
-    chrome.storage.local.set({ storedPassword: JSON.stringify(storedPass) });
-    console.log("storedPassword set to " + JSON.stringify(storedPass));
-  };
+  useEffect(() => {
+    if (pass.length > 7 && pass === confirmPass) {
+      dispatch(setPassword(pass));
+      setIsButtonActive(true);
+    } else setIsButtonActive(false);
+  }, [pass, confirmPass]);
 
   return (
     <DefaultLayout>
@@ -37,18 +36,18 @@ const CreatePassword = (props: CreatePasswordProps) => {
           className={styles.input}
           type="password"
           name="password"
-          onChange={(e) => setPassword(e.currentTarget.value)}
+          onChange={(e) => setPass(e.currentTarget.value)}
         />
         <input
           className={styles.input}
           type="password"
           name="confirmPassword"
-          onChange={(e) => setConfirmPassword(e.currentTarget.value)}
+          onChange={(e) => setConfirmPass(e.currentTarget.value)}
         />
       </div>
       <Filler flexGrow={1} />
-      <Link to={isActive ? props.nextScreen : "#"}>
-        <Button active={isActive} onClick={storePassword}>
+      <Link to={isButtonActive ? props.nextScreen : "#"}>
+        <Button active={isButtonActive} onClick={storePasswordHash}>
           Create password
         </Button>
       </Link>

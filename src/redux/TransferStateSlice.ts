@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
 
 interface TransferState {
   amount: string;
@@ -9,14 +9,14 @@ interface TransferState {
 }
 
 const initialState: TransferState = {
-  amount: '0',
-  receiver: '',
-  receiverChainId: '1',
-  receiverPublicKey: '',
+  amount: "0",
+  receiver: "",
+  receiverChainId: "1",
+  receiverPublicKey: "",
 };
 
 export const transferStateSlice = createSlice({
-  name: 'TransferState',
+  name: "TransferState",
   initialState,
   reducers: {
     setAmount: (state, action: PayloadAction<string>) => {
