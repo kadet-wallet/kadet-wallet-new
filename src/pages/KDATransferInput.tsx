@@ -9,7 +9,7 @@ import {
   setAmount,
   setReceiver,
   setReceiverPublicKey,
-} from "../redux/KDATransferStateSlice";
+} from "@/src/redux/KDATransferStateSlice";
 
 const KDATransferInput = () => {
   const dispatch = useDispatch();
@@ -42,7 +42,6 @@ const KDATransferInput = () => {
   const [isValid, setIsValid] = useState(false);
 
   useEffect(() => {
-    const xchain = !(senderChain === receiverChain);
     setIsCrossChain(() => !(senderChain === receiverChain));
 
     if (receiver.startsWith("k:")) {
@@ -51,14 +50,10 @@ const KDATransferInput = () => {
 
     const numericAmount = Number(amount);
 
-    // if (isNaN(numericAmount)) {
-    //   dispatch(setAmount("0"));
-    // }
-
-    // if (Number.isInteger(numericAmount)) {
-    //   const newAmount = (amount += ".0");
-    //   dispatch(setAmount(newAmount)); // This is because Kadena rejects round numbers without a .0 at the end...
-    // }
+    if (!amount.includes(".")) {
+      const newAmount = (amount += ".0");
+      dispatch(setAmount(newAmount)); // This is because Kadena doesn't like round numbers.
+    }
 
     if (
       (isCrossChain &&
@@ -69,7 +64,7 @@ const KDATransferInput = () => {
     ) {
       console.log(
         "Not valid- Crosschain " +
-          xchain +
+          isCrossChain +
           ", amount: " +
           amount +
           ", receiver: " +
@@ -132,6 +127,11 @@ const KDATransferInput = () => {
           </Link>
         )}
         {!isValid && <Button active={false}>Send</Button>}
+      </div>
+      <div>
+        <Link to="/KDADashboard">
+          <Button active={true}>Dashboard</Button>
+        </Link>
       </div>
     </DefaultLayout>
   );

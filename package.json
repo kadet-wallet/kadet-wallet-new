@@ -10,7 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@kadena/client": "^1.15.0",
     "@kadena/cryptography-utils": "^0.4.4",
+    "@kadena/types": "^0.7.0",
     "@reduxjs/toolkit": "^2.3.0",
     "bcryptjs": "^2.4.3",
     "bip39": "^3.1.0",
