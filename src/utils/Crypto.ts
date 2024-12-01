@@ -1,7 +1,7 @@
 import AES from "crypto-js/aes";
 import Utf8 from "crypto-js/enc-utf8";
 import Base64 from "crypto-js/enc-base64";
-import { hash, restoreKeyPairFromSecretKey } from "@kadena/cryptography-utils";
+import { hash } from "@kadena/cryptography-utils";
 import * as bip39 from "bip39";
 
 export const generateMnemonic = () => {
@@ -51,23 +51,19 @@ export function comparePasswordToHash(
   }
 }
 
-export function getKadenaKeysFromMnemonic(mnemonic: string) {
-  const seed = bip39.mnemonicToSeedSync(mnemonic).toString("hex");
-  return restoreKeyPairFromSecretKey(seed.slice(0, 64));
-}
+export const encryptSRP = (SRP: string[], password: string): string[] => {
+  const encryptedSRP: string[] = [];
+  SRP.map((item) => encryptedSRP.push(encrypt(item, password)));
+  return encryptedSRP;
+};
 
-// export const encryptSRP = (SRP: string[]): string[] => {
-//   const password = store.getState().passwordState.password;
-//   const encryptedSRP: string[] = [];
-//   SRP.map((item) => encryptedSRP.push(encryptKey(item, password)));
-//   return encryptedSRP;
-// };
-
-// export const decryptSRP = (encryptedSRP: string[]): string[] => {
-//   const password = store.getState().passwordState.password;
-//   const decryptedSRP: string[] = [];
-//   encryptedSRP.map((item) => {
-//     decryptedSRP.push(decryptKey(item, password));
-//   });
-//   return decryptedSRP;
-// };
+export const decryptSRP = (
+  encryptedSRP: string[],
+  password: string
+): string[] => {
+  const decryptedSRP: string[] = [];
+  encryptedSRP.map((item) => {
+    decryptedSRP.push(decrypt(item, password));
+  });
+  return decryptedSRP;
+};

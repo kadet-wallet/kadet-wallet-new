@@ -1,29 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-export interface WalletState {
+export interface KDAWalletState {
   chainId: string;
   balance: number;
-  account: string;
-  alias: string;
+  // account: string;
+  // alias: string;
   publicKey: string;
   secretKey: string;
   // wallets: RawWallet[]; // TODO: Ask Hadi what this is all about...
-  connectedSites: string[];
+  // connectedSites: string[];
 }
 
-const initialState: WalletState = {
+const initialState: KDAWalletState = {
   chainId: "1",
   balance: 0,
-  account: "",
-  alias: "",
+  // account: "",
+  // alias: "",
   publicKey: "",
   secretKey: "",
-  connectedSites: [],
+  // connectedSites: [], // TODO: Ask Hadi about these...
 };
 
-export const walletStateSlice = createSlice({
-  name: "WalletState",
+export const KDAWalletStateSlice = createSlice({
+  name: "KDAWalletState",
   initialState,
   reducers: {
     setChainId: (state, action: PayloadAction<string>) => {
@@ -32,32 +32,32 @@ export const walletStateSlice = createSlice({
     setBalance: (state, action: PayloadAction<number>) => {
       state.balance = action.payload;
     },
-    setAccount: (state, action: PayloadAction<string>) => {
-      state.account = action.payload;
-    },
-    setAlias: (state, action: PayloadAction<string>) => {
-      state.alias = action.payload;
-    },
+    // setAccount: (state, action: PayloadAction<string>) => {
+    //   state.account = action.payload;
+    // },
+    // setAlias: (state, action: PayloadAction<string>) => {
+    //   state.alias = action.payload;
+    // },
     setPublicKey: (state, action: PayloadAction<string>) => {
       state.publicKey = action.payload;
     },
     setSecretKey: (state, action: PayloadAction<string>) => {
       state.secretKey = action.payload;
     },
-    setConnectedSites: (state, action: PayloadAction<string[]>) => {
-      state.connectedSites = action.payload;
-    },
+    // setConnectedSites: (state, action: PayloadAction<string[]>) => {
+    //   state.connectedSites = action.payload;
+    // },
   },
 });
 
 export const {
   setChainId,
   setBalance,
-  setAccount,
-  setAlias,
+  // setAccount,
+  // setAlias,
   setPublicKey,
   setSecretKey,
-  setConnectedSites,
-} = walletStateSlice.actions;
+  // setConnectedSites,
+} = KDAWalletStateSlice.actions;
 
-export default walletStateSlice.reducer;
+export default KDAWalletStateSlice.reducer;

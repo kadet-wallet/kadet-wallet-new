@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-interface TransferState {
+interface KDATransferState {
   amount: string;
   receiver: string;
   receiverChainId: string;
   receiverPublicKey: string;
 }
 
-const initialState: TransferState = {
+const initialState: KDATransferState = {
   amount: "0",
   receiver: "",
   receiverChainId: "1",

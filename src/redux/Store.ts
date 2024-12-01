@@ -1,16 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 import SrpStateSliceReducer from "./SrpStateSlice";
 import PasswordStateSliceReducer from "./PasswordStateSlice";
-import NetworkStateSliceReducer from "./NetworkStateSlice";
-import WalletStateReducer from "./WalletStateSlice";
-import TransferStateReducer from "./TransferStateSlice";
+import NetworkStateSliceReducer from "./KDANetworkStateSlice";
+import WalletStateReducer from "./KDAWalletStateSlice";
+import TransferStateReducer from "./KDATransferStateSlice";
 
 export const store = configureStore({
   reducer: {
     srpState: SrpStateSliceReducer,
     passwordState: PasswordStateSliceReducer,
     networkState: NetworkStateSliceReducer,
-    walletState: WalletStateReducer,
+    KDAWalletState: WalletStateReducer,
     transferState: TransferStateReducer,
   },
 });

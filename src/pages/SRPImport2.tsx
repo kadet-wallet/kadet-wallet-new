@@ -3,9 +3,9 @@ import DefaultLayout from "@/src/components/DefaultLayout";
 import SRPLayoutImport from "@/src/components/SRPLayoutImport";
 import Filler from "@/src/components/Filler";
 import Button from "@/src/components/Button";
-import { handleKeyCreation } from "@/src/utils/KeyCreation";
+import { saveSRP } from "@/src/utils/SRP";
 
-const SrpImport2 = () => {
+const SRPImport2 = () => {
   return (
     <DefaultLayout>
       <div>
@@ -15,7 +15,7 @@ const SrpImport2 = () => {
       <Filler flexGrow={1} />
       <div>
         <Link to="/KDADashboard">
-          <Button active={true} onClick={handleKeyCreation}>
+          <Button active={true} onClick={saveSRP}>
             Next
           </Button>
         </Link>
@@ -24,4 +24,4 @@ const SrpImport2 = () => {
   );
 };
 
-export default SrpImport2;
+export default SRPImport2;
