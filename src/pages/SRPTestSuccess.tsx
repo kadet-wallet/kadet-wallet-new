@@ -8,7 +8,7 @@ const SRPTestSuccess = () => {
       <p>Your secure recovery phrases match!</p>
       <Filler flexGrow={1} />
       <div>
-        <Link to="/Dashboard">Dashboard</Link>
+        <Link to="/KDADashboard">Dashboard</Link>
       </div>
     </DefaultLayout>
   );

@@ -26,7 +26,7 @@ const Unlock = () => {
       </div>
       <div>
         {valid && (
-          <Link to="/Dashboard">
+          <Link to="/KDADashboard">
             <Button active={valid}>Unlock</Button>
           </Link>
         )}

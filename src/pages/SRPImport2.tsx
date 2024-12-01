@@ -14,7 +14,7 @@ const SrpImport2 = () => {
       <SRPLayoutImport startIdx={12} />
       <Filler flexGrow={1} />
       <div>
-        <Link to="/Dashboard">
+        <Link to="/KDADashboard">
           <Button active={true} onClick={handleKeyCreation}>
             Next
           </Button>
