@@ -1,25 +1,23 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import CopyToClipBoard from "react-copy-to-clipboard";
 import { RootState, store } from "@/src/redux/Store";
 import DefaultLayout from "@/src/components/DefaultLayout";
-import { loadKDAKeys, getKDABalance } from "@/src/utils/Kadena";
+import { getBalance, truncatePublicKey } from "@/src/utils/Kadena";
 import { setBalance } from "@/src/redux/KDAWalletStateSlice";
 import Button from "@/src/components/Button";
 import KDAChainSelector from "@/src/components/KDAChainSelector";
+// import { loadSRP } from "@/src/utils/SRP";
 
 const KDADashboard = () => {
   let chain = useSelector((state: RootState) => state.KDAWalletState.chainId);
   let balance = useSelector((state: RootState) => state.KDAWalletState.balance);
-  // let account = useSelector((state: RootState) => state.KDAWalletState.account);
-  // let alias = useSelector((state: RootState) => state.KDAWalletState.alias);
-  // let networkName = useSelector((state: RootState) => state.networkState.name);
   let publicKey = useSelector(
     (state: RootState) => state.KDAWalletState.publicKey
   );
-  // let secretKey = useSelector(
-  //   (state: RootState) => state.KDAWalletState.secretKey
-  // );
+  let srp = useSelector((state: RootState) => state.srpState.correctSrp);
+  const [balanceFound, setBalanceFound] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -27,27 +25,41 @@ const KDADashboard = () => {
     publicKey = store.getState().KDAWalletState.publicKey;
     chain = store.getState().KDAWalletState.chainId;
     balance = store.getState().KDAWalletState.balance;
+    srp = store.getState().srpState.correctSrp;
   });
 
   useEffect(() => {
-    loadKDAKeys();
+    console.log(srp);
     const fetchData = async () => {
-      const newBalance = await getKDABalance();
-      dispatch(setBalance(newBalance));
+      try {
+        const newBalance = await getBalance();
+        dispatch(setBalance(newBalance));
+        setBalanceFound(true);
+      } catch (e) {
+        setBalanceFound(false);
+      }
     };
-    fetchData().catch((e) => {
-      console.log(e);
+    fetchData().catch((_) => {
+      setBalanceFound(false);
     });
   }, [chain]);
 
   return (
     <DefaultLayout>
       <h1>KDA Dashboard</h1>
-      <p>k:{publicKey}</p>
+      <p>k:{truncatePublicKey(publicKey)}</p>
+      <div>
+        <CopyToClipBoard text={"k:" + publicKey}>
+          <Button active={true}>Copy</Button>
+        </CopyToClipBoard>
+      </div>
       <p>
         Chain ID: <KDAChainSelector type="sender" />
       </p>
-      <p>Balance: {balance}</p>
+      <p>
+        Balance: {balanceFound && balance}
+        {!balanceFound && "No balance"}
+      </p>
       <div>
         <Link to="/KDATransferInput">
           <Button active={true}>Transfer</Button>

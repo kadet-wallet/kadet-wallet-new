@@ -32,11 +32,11 @@ export const srpStateSlice = createSlice({
     },
     setCorrectSrp: (state, action: PayloadAction<string[]>) => {
       state.correctSrp = action.payload;
-      console.log(state.correctSrp);
+      // console.log(state.correctSrp);
     },
     setShuffledSrp: (state, action: PayloadAction<string[]>) => {
       state.shuffledSrp = action.payload;
-      console.log(state.shuffledSrp);
+      // console.log(state.shuffledSrp);
     },
   },
 });

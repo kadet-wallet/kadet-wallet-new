@@ -41,7 +41,7 @@ const SRPTest2 = () => {
         </Link>
         <div>
           {valid === true && (
-            <Link to="/SRPTestSuccess">
+            <Link to="/SRPSuccess">
               <Button active={true}>Next</Button>
             </Link>
           )}

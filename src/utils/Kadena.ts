@@ -21,8 +21,8 @@ import { setPublicKey, setSecretKey } from "@/src/redux/KDAWalletStateSlice";
 import { creationTime } from "@/src/utils/CreationTime";
 import { createClient } from "@kadena/client";
 
-const getKadenaKeysFromMnemonic = (mnemonic: string) => {
-  const seed = bip39.mnemonicToSeedSync(mnemonic).toString("hex");
+const getKadenaKeysFromMnemonic = (mnemonic: string[]) => {
+  const seed = bip39.mnemonicToSeedSync(mnemonic.join(" ")).toString("hex");
   return restoreKeyPairFromSecretKey(seed.slice(0, 64));
 };
 
@@ -39,20 +39,28 @@ const getAccountInfo = () => {
   return { networkId, chainId, apiHost };
 };
 
-export const loadKDAKeys = () => {
+export const truncatePublicKey = (pubkey: string) => {
+  const truncated: string[] = [];
+  truncated.push(pubkey.slice(0, 8));
+  truncated.push("...");
+  truncated.push(pubkey.slice(56, 64));
+  return truncated;
+};
+
+export const genKeys = () => {
   const srp = store.getState().srpState.correctSrp;
-  const keys = getKadenaKeysFromMnemonic(srp.join(" "));
+  const keys = getKadenaKeysFromMnemonic(srp);
   store.dispatch(setPublicKey(keys.publicKey));
   store.dispatch(setSecretKey(keys.secretKey));
 };
 
 export type KDAAccount = `${"k" | "w"}:${string}` | string;
 
-export const keyFromKDAAccount = (account: KDAAccount): string => {
+export const keyFromAccount = (account: KDAAccount): string => {
   return account.split(":")[1];
 };
 
-export async function getKDABalance() {
+export async function getBalance() {
   const publicKey = store.getState().KDAWalletState.publicKey;
   const secretKey = store.getState().KDAWalletState.secretKey;
 
@@ -81,7 +89,7 @@ export async function getKDABalance() {
   console.log(cmd);
   const result = await Pact.fetch.local(cmd, apiHost);
   console.log(result);
-  if (result?.result?.status === "failure") return 0;
+  if (result?.result?.status === "failure") throw "No balance to read.";
   return result?.result?.data as number;
 }
 

@@ -17,7 +17,7 @@ const SRPTextInputBadge = (props: SRPBadgeProps) => {
     const tempSrp = [...enteredSrp];
     tempSrp[props.num] = e.target.value;
     dispatch(setEnteredSrp(tempSrp));
-    console.log(tempSrp);
+    //console.log(tempSrp);
   };
 
   return (

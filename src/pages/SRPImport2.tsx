@@ -3,7 +3,8 @@ import DefaultLayout from "@/src/components/DefaultLayout";
 import SRPLayoutImport from "@/src/components/SRPLayoutImport";
 import Filler from "@/src/components/Filler";
 import Button from "@/src/components/Button";
-import { saveSRP } from "@/src/utils/SRP";
+// import { saveSRP, loadSRP } from "@/src/utils/SRP";
+// import { genKeys } from "@/src/utils/Kadena";
 
 const SRPImport2 = () => {
   return (
@@ -14,10 +15,8 @@ const SRPImport2 = () => {
       <SRPLayoutImport startIdx={12} />
       <Filler flexGrow={1} />
       <div>
-        <Link to="/KDADashboard">
-          <Button active={true} onClick={saveSRP}>
-            Next
-          </Button>
+        <Link to="/SRPSuccess">
+          <Button active={true}>Next</Button>
         </Link>
       </div>
     </DefaultLayout>

@@ -2,8 +2,10 @@ import { StoredPasswordHash, comparePasswordToHash } from "@/src/utils/Crypto";
 import { store } from "@/src/redux/Store";
 import {
   setIsPasswordValid,
+  setPassword,
   setPasswordError,
 } from "@/src/redux/PasswordStateSlice";
+import { loadSRP } from "@/src/utils/SRP";
 
 export function checkPasswordHash(password: string) {
   chrome.storage.local.get(["storedPassword"]).then((result) => {
@@ -17,6 +19,8 @@ export function checkPasswordHash(password: string) {
       if (comparePasswordToHash(password, storedPasswordObj) === true) {
         //console.log('Found the correct password!');
         store.dispatch(setIsPasswordValid(true));
+        store.dispatch(setPassword(password));
+        loadSRP();
       } else {
         store.dispatch(setIsPasswordValid(false));
         // console.log('Wrong password');

@@ -15,6 +15,7 @@ export const encrypt = (message: string, secret: string): string => {
 
 export const decrypt = (message: string, secret: string): string => {
   const decData = Base64.parse(message).toString(Utf8);
+  // return AES.decrypt(decData, hash(secret)).toString(Utf8);
   return JSON.parse(AES.decrypt(decData, hash(secret)).toString(Utf8));
 };
 
@@ -50,20 +51,3 @@ export function comparePasswordToHash(
     return false;
   }
 }
-
-export const encryptSRP = (SRP: string[], password: string): string[] => {
-  const encryptedSRP: string[] = [];
-  SRP.map((item) => encryptedSRP.push(encrypt(item, password)));
-  return encryptedSRP;
-};
-
-export const decryptSRP = (
-  encryptedSRP: string[],
-  password: string
-): string[] => {
-  const decryptedSRP: string[] = [];
-  encryptedSRP.map((item) => {
-    decryptedSRP.push(decrypt(item, password));
-  });
-  return decryptedSRP;
-};

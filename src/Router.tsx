@@ -7,7 +7,7 @@ import SRPDisplay from "@/src/pages/SRPDisplay";
 import SRPDisplay2 from "@/src/pages/SRPDisplay2";
 import SRPTest from "@/src/pages/SRPTest";
 import SRPTest2 from "@/src/pages/SRPTest2";
-import SRPTestSuccess from "@/src/pages/SRPTestSuccess";
+import SRPTestSuccess from "@/src/pages/SRPSuccess";
 import KDADashboard from "@/src/pages/KDADashboard";
 import KDATransferInput from "@/src/pages/KDATransferInput";
 import KDATransferInProgress from "@/src/pages/KDATransferInProgress";
@@ -35,7 +35,7 @@ const Routers = () => {
 
         <Route path="/SRPTest" element={<SRPTest />}></Route>
         <Route path="/SRPTest2" element={<SRPTest2 />}></Route>
-        <Route path="/SRPTestSuccess" element={<SRPTestSuccess />}></Route>
+        <Route path="/SRPSuccess" element={<SRPTestSuccess />}></Route>
         <Route path="/KDADashboard" element={<KDADashboard />}></Route>
         <Route path="/KDATransferInput" element={<KDATransferInput />}></Route>
         <Route

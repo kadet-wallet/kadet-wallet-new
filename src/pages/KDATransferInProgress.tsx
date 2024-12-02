@@ -61,7 +61,7 @@ const KDATransferInProgress = () => {
       </p>
       <p>
         {isFinished && (
-          <Link to="/Dashboard">
+          <Link to="/KDADashboard">
             <Button active={true}>Dashboard</Button>
           </Link>
         )}
