@@ -18,28 +18,18 @@ export const loadSRP = () => {
   const pass = store.getState().passwordState.password;
 
   chrome.storage.local.get("encryptedSRP", (value) => {
-    // console.log(value);
-    const srp: string[] = value.encryptedSRP;
-    // console.log(srp);
-    const decrypted = decryptSRP(srp, pass);
+    const decrypted = decryptSRP(value.encryptedSRP, pass);
     console.log(decrypted);
     store.dispatch(setCorrectSrp(decrypted));
     genKeys();
   });
 };
 
-const encryptSRP = (SRP: string[], password: string) => {
-  const encryptedSRP: string[] = [];
-  SRP.map((item) => encryptedSRP.push(encrypt(item, password)));
-  return encryptedSRP;
+const encryptSRP = (srp: string[], password: string) => {
+  return encrypt(srp.join(" "), password);
 };
 
-const decryptSRP = (encryptedSRP: string[], password: string): string[] => {
-  const decryptedSRP: string[] = [];
-  //console.log(encryptedSRP);
-  encryptedSRP.map((item) => {
-    decryptedSRP.push(decrypt(item, password));
-  });
-  // console.log(decryptedSRP);
-  return decryptedSRP;
+const decryptSRP = (encryptedSRP: string, password: string): string[] => {
+  const decrypted = decrypt(encryptedSRP, password).split(" ");
+  return decrypted;
 };
