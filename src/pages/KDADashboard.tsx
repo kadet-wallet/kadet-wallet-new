@@ -8,7 +8,7 @@ import { getBalance, truncatePublicKey } from "@/src/utils/Kadena";
 import { setBalance } from "@/src/redux/KDAWalletStateSlice";
 import Button from "@/src/components/Button";
 import KDAChainSelector from "@/src/components/KDAChainSelector";
-// import { loadSRP } from "@/src/utils/SRP";
+import { loadSRP } from "@/src/utils/SRP";
 
 const KDADashboard = () => {
   let chain = useSelector((state: RootState) => state.KDAWalletState.chainId);
@@ -16,7 +16,7 @@ const KDADashboard = () => {
   let publicKey = useSelector(
     (state: RootState) => state.KDAWalletState.publicKey
   );
-  let srp = useSelector((state: RootState) => state.srpState.correctSrp);
+  // let srp = useSelector((state: RootState) => state.srpState.correctSrp);
   const [balanceFound, setBalanceFound] = useState(false);
 
   const dispatch = useDispatch();
@@ -25,20 +25,28 @@ const KDADashboard = () => {
     publicKey = store.getState().KDAWalletState.publicKey;
     chain = store.getState().KDAWalletState.chainId;
     balance = store.getState().KDAWalletState.balance;
-    srp = store.getState().srpState.correctSrp;
+    // srp = store.getState().srpState.correctSrp;
   });
 
+  const fetchData = async () => {
+    try {
+      const newBalance = await getBalance();
+      dispatch(setBalance(newBalance));
+      setBalanceFound(true);
+    } catch (e) {
+      setBalanceFound(false);
+    }
+  };
+
   useEffect(() => {
-    console.log(srp);
-    const fetchData = async () => {
-      try {
-        const newBalance = await getBalance();
-        dispatch(setBalance(newBalance));
-        setBalanceFound(true);
-      } catch (e) {
-        setBalanceFound(false);
-      }
-    };
+    loadSRP();
+    fetchData().catch((_) => {
+      setBalanceFound(false);
+    });
+  }, []);
+
+  useEffect(() => {
+    //console.log(srp);
     fetchData().catch((_) => {
       setBalanceFound(false);
     });

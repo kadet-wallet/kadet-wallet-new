@@ -2,14 +2,12 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import DefaultLayout from "@/src/components/DefaultLayout";
 import Filler from "@/src/components/Filler";
-import { saveSRP, loadSRP } from "@/src/utils/SRP";
-// import { genKeys } from "@/src/utils/Kadena";
+import { saveSRP } from "@/src/utils/SRP";
 import Button from "@/src/components/Button";
 
 const SRPTestSuccess = () => {
   useEffect(() => {
     saveSRP();
-    loadSRP();
   });
 
   return (

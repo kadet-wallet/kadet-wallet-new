@@ -21,24 +21,6 @@ import { setPublicKey, setSecretKey } from "@/src/redux/KDAWalletStateSlice";
 import { creationTime } from "@/src/utils/CreationTime";
 import { createClient } from "@kadena/client";
 
-const getKadenaKeysFromMnemonic = (mnemonic: string[]) => {
-  const seed = bip39.mnemonicToSeedSync(mnemonic.join(" ")).toString("hex");
-  return restoreKeyPairFromSecretKey(seed.slice(0, 64));
-};
-
-const getAccountInfo = () => {
-  const networkId = store.getState().networkState.networkId;
-  const chainId = store.getState().KDAWalletState.chainId;
-  const apiHost =
-    store.getState().networkState.url +
-    "/chainweb/0.0/" +
-    networkId +
-    "/chain/" +
-    chainId +
-    "/pact";
-  return { networkId, chainId, apiHost };
-};
-
 export const truncatePublicKey = (pubkey: string) => {
   const truncated: string[] = [];
   truncated.push(pubkey.slice(0, 8));
@@ -86,9 +68,9 @@ export async function getBalance() {
       sender: KEY_PAIR.publicKey,
     },
   };
-  console.log(cmd);
+  //console.log(cmd);
   const result = await Pact.fetch.local(cmd, apiHost);
-  console.log(result);
+  //console.log(result);
   if (result?.result?.status === "failure") throw "No balance to read.";
   return result?.result?.data as number;
 }
@@ -136,15 +118,15 @@ export async function transfer(receiver: string, amount: string) {
   const response = await Pact.fetch.send(cmd, apiHost);
   // console.log(response);
   if (response.requestKeys !== undefined) {
-    console.log(`\nRequest key: ${response.requestKeys[0]}`);
-    console.log("Transaction pending...");
+    //console.log(`\nRequest key: ${response.requestKeys[0]}`);
+    //console.log("Transaction pending...");
 
     const txResult = await Pact.fetch.listen(
       { listen: response.requestKeys[0] },
       apiHost
     );
-    console.log("Transaction mined!");
-    console.log(txResult);
+    //console.log("Transaction mined!");
+    //console.log(txResult);
 
     //return txResult;
     if (txResult.result.status === "failure") return false;
@@ -167,9 +149,9 @@ export interface IAccount {
 const NETWORK_ID = store.getState().networkState.networkId;
 
 const inspect =
-  (tag: string): (<T extends unknown>(data: T) => T) =>
+  (_: string): (<T extends unknown>(data: T) => T) =>
   <T extends any>(data: T): T => {
-    console.log(tag, data);
+    //console.log(tag, data);
     return data;
   };
 
@@ -382,3 +364,22 @@ export function transferCrossChain(
   return doCrossChainTransfer(from, to, amount, senderSecret);
 }
 // End cross-chain transfer commands.
+
+const getKadenaKeysFromMnemonic = (mnemonic: string[]) => {
+  const seed = bip39.mnemonicToSeedSync(mnemonic.join(" ")).toString("hex");
+  console.log(seed);
+  return restoreKeyPairFromSecretKey(seed.slice(0, 64));
+};
+
+const getAccountInfo = () => {
+  const networkId = store.getState().networkState.networkId;
+  const chainId = store.getState().KDAWalletState.chainId;
+  const apiHost =
+    store.getState().networkState.url +
+    "/chainweb/0.0/" +
+    networkId +
+    "/chain/" +
+    chainId +
+    "/pact";
+  return { networkId, chainId, apiHost };
+};

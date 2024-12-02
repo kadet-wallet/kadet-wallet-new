@@ -5,6 +5,8 @@ import { store, RootState } from "@/src/redux/Store";
 import DefaultLayout from "@/src/components/DefaultLayout";
 import KDAChainSelector from "@/src/components/KDAChainSelector";
 import Button from "@/src/components/Button";
+import styles from "@/src/styles/Input.module.scss";
+
 import {
   setAmount,
   setReceiver,
@@ -90,6 +92,7 @@ const KDATransferInput = () => {
         Amount:{" "}
         <input
           type="text"
+          className={styles.input}
           onChange={(event) => dispatch(setAmount(event.target.value))}
         />
       </p>
@@ -100,6 +103,7 @@ const KDATransferInput = () => {
         Receiver:{" "}
         <input
           type="text"
+          className={styles.input}
           onChange={(event) => dispatch(setReceiver(event.target.value))}
         />
       </p>

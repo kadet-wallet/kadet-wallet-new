@@ -5,6 +5,7 @@ import Button from "@/src/components/Button";
 import { checkPasswordHash } from "@/src/utils/CheckPasswordHash";
 import { store, RootState } from "@/src/redux/Store";
 import { genKeys } from "@/src/utils/Kadena";
+import styles from "@/src/styles/Input.module.scss";
 
 const Unlock = () => {
   let valid = useSelector(
@@ -22,7 +23,7 @@ const Unlock = () => {
     <DefaultLayout>
       <h1>Unlock wallet</h1>
       <div>
-        <input type="password" onChange={onChange} />
+        <input type="password" className={styles.input} onChange={onChange} />
       </div>
       <div>
         {valid && (

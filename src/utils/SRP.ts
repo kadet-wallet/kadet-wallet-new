@@ -11,7 +11,7 @@ export const saveSRP = () => {
   chrome.storage.local.set({
     encryptedSRP: encrypted,
   });
-  console.log("Saved SRP: " + srp);
+  //console.log("Saved SRP: " + srp);
 };
 
 export const loadSRP = () => {
@@ -19,7 +19,7 @@ export const loadSRP = () => {
 
   chrome.storage.local.get("encryptedSRP", (value) => {
     const decrypted = decryptSRP(value.encryptedSRP, pass);
-    console.log(decrypted);
+    //console.log(decrypted);
     store.dispatch(setCorrectSrp(decrypted));
     genKeys();
   });

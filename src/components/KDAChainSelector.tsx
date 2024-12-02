@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { setChainId } from "@/src/redux/KDAWalletStateSlice";
 import { setReceiverChainId } from "../redux/KDATransferStateSlice";
+import styles from "@/src/styles/Selector.module.scss";
 
 export type KDACHainSelectProps = {
   type: "sender" | "receiver";
@@ -17,7 +18,7 @@ const KDAChainSelector = (props: KDACHainSelectProps) => {
     }
   };
   return (
-    <select onChange={onChange} defaultValue="1">
+    <select className={styles.selector} onChange={onChange} defaultValue="1">
       <option value="0">0</option>
       <option value="1">1</option>
       <option value="2">2</option>

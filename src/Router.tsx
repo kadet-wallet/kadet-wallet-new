@@ -15,7 +15,6 @@ import SRPImport from "@/src/pages/SRPImport";
 import SRPImport2 from "@/src/pages/SRPImport2";
 
 const Routers = () => {
-  console.log("Router");
   return (
     <HashRouter>
       <Routes>
